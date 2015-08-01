@@ -25,7 +25,7 @@ public class Sample implements Tickable, Field {
         this.dice = dice;
         walls = level.getWalls();
         size = level.getSize();
-        players = new LinkedList<Player>();
+        players = new LinkedList<>();
         stones = new LinkedList<>();
         bullets = new LinkedList<>();
 
@@ -84,7 +84,7 @@ public class Sample implements Tickable, Field {
 
             @Override
             public Iterable<? extends Point> elements() {
-                List<Point> result = new LinkedList<Point>();
+                List<Point> result = new LinkedList<>();
                 result.addAll(getHeroes());
                 result.addAll(stones);
                 result.addAll(walls);
@@ -94,7 +94,7 @@ public class Sample implements Tickable, Field {
     }
 
     public List<Hero> getHeroes() {
-        List<Hero> heroes = new LinkedList<Hero>();
+        List<Hero> heroes = new LinkedList<>();
         for (Player player : players) {
            heroes.add(player.getHero());
         }
@@ -109,7 +109,7 @@ public class Sample implements Tickable, Field {
     @Override
     public void setStone(int x) {
         if (isNewStone){
-            stones.add(new Stone(x, size - 1));
+            stones.add(new Stone(x, size));
             isNewStone = false;
         }
     }

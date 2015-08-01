@@ -5,15 +5,12 @@ import com.codenjoy.dojo.services.PointImpl;
 import com.codenjoy.dojo.services.State;
 import com.codenjoy.dojo.services.Tickable;
 
-/**
- * Created by Pyatnitskiy.a on 01.08.2015.
- */
 public class Stone extends PointImpl implements State<Elements, Player>, Tickable{
     private Direction direction;
 
     public Stone(int x, int y) {
         super(x, y);
-        direction = null;
+        direction = Direction.DOWN;
     }
 
     @Override
@@ -29,8 +26,6 @@ public class Stone extends PointImpl implements State<Elements, Player>, Tickabl
             int newX = direction.changeX(x);
             int newY = direction.changeY(y);
             move(newX, newY);
-        }else {
-            direction = direction.DOWN;
         }
 
     }
