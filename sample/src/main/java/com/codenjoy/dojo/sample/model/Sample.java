@@ -13,6 +13,7 @@ import java.util.List;
  */
 public class Sample implements Tickable, Field {
 
+    public static final int NEW_STONE_APPEAR_PERIOD = 3;
     private List<Player> players;
 
     private final int size;
@@ -43,10 +44,10 @@ public class Sample implements Tickable, Field {
         explosions.clear();
 
         count++;
-        if (count == 3) {
+        if (count == NEW_STONE_APPEAR_PERIOD) {
             int x = dice.next(size - 2);
             if (x != -1) {
-                setStone(x + 1);
+                addStone(x + 1);
                 count = 0;
             }
         }
@@ -149,7 +150,7 @@ public class Sample implements Tickable, Field {
     }
 
     @Override
-    public void setStone(int x) {
+    public void addStone(int x) {
         stones.add(new Stone(x, size));
         isNewStone = false;
     }

@@ -2,7 +2,6 @@ package com.codenjoy.dojo.sample.model;
 
 import com.codenjoy.dojo.services.PrinterFactory;
 import com.codenjoy.dojo.utils.TestUtils;
-import com.codenjoy.dojo.sample.services.Events;
 import com.codenjoy.dojo.services.Dice;
 import com.codenjoy.dojo.services.EventListener;
 import com.codenjoy.dojo.services.PrinterFactoryImpl;
@@ -141,7 +140,7 @@ public class SampleTest {
                 "☼   ☼" +
                 "☼   ☼");
 
-        game.setStone(2);
+        game.addStone(2);
         game.tick();
 
         // then
@@ -163,7 +162,7 @@ public class SampleTest {
                 "☼ ☺ ☼");
 
         // when
-        game.setStone(1);
+        game.addStone(1);
         game.tick();
         game.tick();
         game.tick();
@@ -391,6 +390,8 @@ public class SampleTest {
                 "☼   ☼" +
                 "☼   ☼");
     }
+
+
 //    // Я умею стралять в любую позицию
 //    @Test
 //    public void shouldFireUp() {

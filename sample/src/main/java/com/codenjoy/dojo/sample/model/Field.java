@@ -9,7 +9,7 @@ import com.codenjoy.dojo.services.Point;
 public interface Field {
     void addBullet(int x, int y);
 
-    void setStone(int x);
+    void addStone(int x);
 
     // TODO
 //    boolean isBarrier(int x, int y);
