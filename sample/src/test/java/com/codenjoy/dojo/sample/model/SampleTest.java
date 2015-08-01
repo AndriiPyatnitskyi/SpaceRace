@@ -52,7 +52,7 @@ public class SampleTest {
         game.newGame(player);
         player.hero = hero;
         hero.init(game);
-//        this.hero = game.getHeroes().get(0);
+        this.hero = game.getHeroes().get(0);
     }
 
     private void assertE(String expected) {
@@ -77,6 +77,26 @@ public class SampleTest {
     }
 
     // Я умею стралять в любую позицию
+    @Test
+    public void shouldFireUp() {
+        givenFl("☼☼☼☼☼" +
+                "☼   ☼" +
+                "☼ ☺ ☼" +
+                "☼   ☼" +
+                "☼☼☼☼☼");
+
+        hero.act();
+        hero.up();
+
+        game.tick();
+
+        assertE("☼☼☼☼☼" +
+                "☼ * ☼" +
+                "☼ ☺ ☼" +
+                "☼   ☼" +
+                "☼☼☼☼☼");
+    }
+
     // каким-то образом появляются мишени
     // если я попадаю в мишень, то она исчезает, а мне профит в виде очков
     //

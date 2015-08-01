@@ -19,12 +19,14 @@ public class Sample implements Tickable, Field {
     private final int size;
     private Dice dice;
     private List<Wall> walls;
+    private List<Bullet> bullets;
 
     public Sample(Level level, Dice dice) {
         this.dice = dice;
         walls = level.getWalls();
         size = level.getSize();
         players = new LinkedList<Player>();
+        bullets = new LinkedList<Bullet>();
     }
 
     /**
@@ -32,27 +34,10 @@ public class Sample implements Tickable, Field {
      */
     @Override
     public void tick() {
-//        for (Player player : players) {
-//            Hero hero = player.getHero();
-//
-//            hero.tick();
-//
-//            if (gold.contains(hero)) {
-//                gold.remove(hero);
-//                player.event(Events.WIN);
-//
-//                Point pos = getFreeRandom();
-//                gold.add(new Gold(pos.getX(), pos.getY()));
-//            }
-//        }
-//
-//        for (Player player : players) {
-//            Hero hero = player.getHero();
-//
-//            if (!hero.isAlive()) {
-//                player.event(Events.LOOSE);
-//            }
-//        }
+        for (Player player : players) {
+            Hero hero = player.getHero();
+            hero.tick();
+        }
     }
 
     public int size() {
@@ -84,6 +69,7 @@ public class Sample implements Tickable, Field {
                 List<Point> result = new LinkedList<Point>();
                 result.addAll(getHeroes());
                 result.addAll(walls);
+                result.addAll(bullets);
                 return result;
             }
         };
@@ -96,4 +82,25 @@ public class Sample implements Tickable, Field {
         }
         return heroes;
     }
+
+    @Override
+    public void addBullet(int x, int y) {
+        bullets.add(new Bullet(x, y));
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
