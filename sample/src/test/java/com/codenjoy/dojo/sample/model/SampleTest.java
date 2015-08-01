@@ -321,7 +321,76 @@ public class SampleTest {
 
     }
 
+    @Test
+    public void shouldStoneRemovedWhenOutsideBorder() {
+        // given
 
+        givenFl("☼   ☼" +
+                "☼   ☼" +
+                "☼   ☼" +
+                "☼   ☼" +
+                "☼ ☺ ☼");
+
+        // when
+        dice(2);
+        game.tick();
+        game.tick();
+        game.tick();
+
+        // then
+        assertE("☼  0☼" +
+                "☼   ☼" +
+                "☼   ☼" +
+                "☼   ☼" +
+                "☼ ☺ ☼");
+
+        game.tick();
+        game.tick();
+        game.tick();
+        game.tick();
+
+
+        // then
+        assertE("☼   ☼" +
+                "☼  0☼" +
+                "☼   ☼" +
+                "☼   ☼" +
+                "☼ ☺0☼");
+
+        game.tick();
+
+        // then
+        assertE("☼   ☼" +
+                "☼   ☼" +
+                "☼  0☼" +
+                "☼   ☼" +
+                "☼ ☺ ☼");
+
+    }
+
+    @Test
+    public void shouldBulletOutbond() {
+        // given
+
+        givenFl("☼   ☼" +
+                "☼   ☼" +
+                "☼ ☺ ☼" +
+                "☼   ☼" +
+                "☼   ☼");
+
+        // when
+        hero.act();
+        game.tick();
+        game.tick();
+        game.tick();
+
+        // then
+        assertE("☼   ☼" +
+                "☼   ☼" +
+                "☼ ☺ ☼" +
+                "☼   ☼" +
+                "☼   ☼");
+    }
 //    // Я умею стралять в любую позицию
 //    @Test
 //    public void shouldFireUp() {

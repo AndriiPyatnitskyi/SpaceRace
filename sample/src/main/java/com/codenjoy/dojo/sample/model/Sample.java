@@ -60,16 +60,35 @@ public class Sample implements Tickable, Field {
             bullet.tick();
         }
 
-        removeStone();
+        removeStoneDestroyedByBullet();
 
         for (Stone stone : stones) {
             stone.tick();
         }
 
-        removeStone();
+        removeStoneDestroyedByBullet();
+        removeStoneOutOfBoard();
+        removeBulleteOutOfBoard();
+
     }
 
-    private void removeStone() {
+    private void removeStoneOutOfBoard() {
+        for (Bullet bullet : new ArrayList<>(bullets)){
+            if (bullet.isOutOf(size)){
+                bullets.remove(bullet);
+            }
+        }
+    }
+
+    private void removeBulleteOutOfBoard() {
+        for (Stone stone : new ArrayList<>(stones)){
+            if (stone.isOutOf(size)){
+                stones.remove(stone);
+            }
+        }
+    }
+
+    private void removeStoneDestroyedByBullet() {
         for (Bullet bullet : new ArrayList<>(bullets)) { // TODO to use iterator.remove
             if (stones.contains(bullet)) {
                 bullets.remove(bullet);
