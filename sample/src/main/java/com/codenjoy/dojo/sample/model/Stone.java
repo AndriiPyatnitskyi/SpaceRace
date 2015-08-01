@@ -29,8 +29,4 @@ public class Stone extends PointImpl implements State<Elements, Player>, Tickabl
         }
 
     }
-
-    public Stone getStone() {
-        return this;
-    }
 }

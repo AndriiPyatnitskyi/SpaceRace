@@ -33,6 +33,7 @@ public class SampleTest {
     @Before
     public void setup() {
         dice = mock(Dice.class);
+        dice(-1);
     }
 
     private void dice(int...ints) {
@@ -133,7 +134,7 @@ public class SampleTest {
 
     @Test
     public void shouldNewStone() {
-        //Given
+        // given
         givenFl("☼   ☼" +
                 "☼   ☼" +
                 "☼ ☺ ☼" +
@@ -143,7 +144,7 @@ public class SampleTest {
         game.setStone(2);
         game.tick();
 
-        //then
+        // then
         assertE("☼ 0 ☼" +
                 "☼   ☼" +
                 "☼ ☺ ☼" +
@@ -153,23 +154,53 @@ public class SampleTest {
 
     @Test
     public void shouldStoneMove() {
-        //Given
+        // given
 
         givenFl("☼   ☼" +
                 "☼   ☼" +
                 "☼   ☼" +
                 "☼   ☼" +
                 "☼ ☺ ☼");
-        //when
+
+        // when
         game.setStone(1);
         game.tick();
         game.tick();
         game.tick();
 
+        // then
         assertE("☼   ☼" +
                 "☼   ☼" +
                 "☼0  ☼" +
                 "☼   ☼" +
+                "☼ ☺ ☼");
+    }
+
+    @Test
+    public void shouldStoneAppearsEvery3seconds() {
+        // given
+
+        givenFl("☼   ☼" +
+                "☼   ☼" +
+                "☼   ☼" +
+                "☼   ☼" +
+                "☼ ☺ ☼");
+
+        // when
+        dice(0);
+        game.tick();
+        game.tick();
+        game.tick();
+
+        game.tick();
+        game.tick();
+        game.tick();
+
+        // then
+        assertE("☼0  ☼" +
+                "☼   ☼" +
+                "☼   ☼" +
+                "☼0  ☼" +
                 "☼ ☺ ☼");
     }
 

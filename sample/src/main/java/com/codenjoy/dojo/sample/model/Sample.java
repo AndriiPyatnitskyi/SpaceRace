@@ -20,6 +20,7 @@ public class Sample implements Tickable, Field {
     private List<Bullet> bullets;
     private List<Stone> stones;
     private boolean isNewStone = true;
+    private int count = 0;
 
     public Sample(Level level, Dice dice) {
         this.dice = dice;
@@ -36,16 +37,22 @@ public class Sample implements Tickable, Field {
      */
     @Override
     public void tick() {
+        count++;
+        if (count == 3) {
+            int x = dice.next(size - 2);
+            if (x != -1) {
+                setStone(x + 1);
+                count = 0;
+            }
+        }
+
         for (Player player : players) {
             Hero hero = player.getHero();
             hero.tick();
         }
         for (Stone stone : stones) {
-            stone.getStone().tick();
-//            stone.tick();
+            stone.tick();
         }
-
-
 
 //        for (Bullet bullet : bullets) {
 //            bullet.tick();
@@ -108,10 +115,8 @@ public class Sample implements Tickable, Field {
 
     @Override
     public void setStone(int x) {
-        if (isNewStone){
-            stones.add(new Stone(x, size));
-            isNewStone = false;
-        }
+        stones.add(new Stone(x, size));
+        isNewStone = false;
     }
 }
 
