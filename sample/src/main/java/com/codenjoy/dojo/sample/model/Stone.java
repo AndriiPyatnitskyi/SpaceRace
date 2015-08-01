@@ -1,16 +1,17 @@
 package com.codenjoy.dojo.sample.model;
 
-import com.codenjoy.dojo.services.Direction;
-import com.codenjoy.dojo.services.PointImpl;
-import com.codenjoy.dojo.services.State;
-import com.codenjoy.dojo.services.Tickable;
+import com.codenjoy.dojo.services.*;
 
-public class Stone extends PointImpl implements State<Elements, Player>, Tickable{
+public class Stone extends PointImpl implements State<Elements, Player>, Tickable {
     private Direction direction;
 
     public Stone(int x, int y) {
         super(x, y);
         direction = Direction.DOWN;
+    }
+
+    public Stone(Point pt) {
+       super(pt);
     }
 
     @Override

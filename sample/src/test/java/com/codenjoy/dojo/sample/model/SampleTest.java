@@ -225,10 +225,101 @@ public class SampleTest {
                 "☼   ☼" +
                 "☼ ☺ ☼" +
                 "☼   ☼");
+    }
 
+    @Test
+    public void shouldStoneDestroydByBullet() {
+        // given
+
+        givenFl("☼   ☼" +
+                "☼   ☼" +
+                "☼   ☼" +
+                "☼   ☼" +
+                "☼ ☺ ☼");
+
+        dice(1);
+        hero.act();
+        game.tick();
+
+        assertE("☼   ☼" +
+                "☼   ☼" +
+                "☼   ☼" +
+                "☼ * ☼" +
+                "☼ ☺ ☼");
+
+        game.tick();
+
+        assertE("☼   ☼" +
+                "☼   ☼" +
+                "☼ * ☼" +
+                "☼   ☼" +
+                "☼ ☺ ☼");
+
+        game.tick();
+
+        assertE("☼ 0 ☼" +
+                "☼ * ☼" +
+                "☼   ☼" +
+                "☼   ☼" +
+                "☼ ☺ ☼");
+
+        game.tick();
+
+        // then
+        assertE("☼ x ☼" +
+                "☼   ☼" +
+                "☼   ☼" +
+                "☼   ☼" +
+                "☼ ☺ ☼");
 
     }
 
+    @Test
+    public void shouldStoneDestroydByBullet2() {
+        // given
+
+        givenFl("☼   ☼" +
+                "☼   ☼" +
+                "☼   ☼" +
+                "☼ ☺ ☼" +
+                "☼   ☼");
+
+        dice(1);
+        hero.act();
+        game.tick();
+
+        assertE("☼   ☼" +
+                "☼   ☼" +
+                "☼ * ☼" +
+                "☼ ☺ ☼" +
+                "☼   ☼");
+
+        game.tick();
+
+        assertE("☼   ☼" +
+                "☼ * ☼" +
+                "☼   ☼" +
+                "☼ ☺ ☼" +
+                "☼   ☼");
+
+        game.tick();
+
+        assertE("☼ x ☼" +
+                "☼   ☼" +
+                "☼   ☼" +
+                "☼ ☺ ☼" +
+                "☼   ☼");
+
+        game.tick();
+
+        // then
+        assertE("☼   ☼" +
+                "☼   ☼" +
+                "☼   ☼" +
+                "☼ ☺ ☼" +
+                "☼   ☼");
+
+    }
 
 
 //    // Я умею стралять в любую позицию

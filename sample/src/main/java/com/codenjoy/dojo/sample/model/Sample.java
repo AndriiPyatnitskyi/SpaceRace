@@ -2,6 +2,7 @@ package com.codenjoy.dojo.sample.model;
 
 import com.codenjoy.dojo.services.*;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -18,6 +19,7 @@ public class Sample implements Tickable, Field {
     private Dice dice;
     private List<Wall> walls;
     private List<Bullet> bullets;
+    private List<Explosion> explosions;
     private List<Stone> stones;
     private boolean isNewStone = true;
     private int count = 0;
@@ -29,6 +31,7 @@ public class Sample implements Tickable, Field {
         players = new LinkedList<>();
         stones = new LinkedList<>();
         bullets = new LinkedList<>();
+        explosions = new LinkedList<>();
 
     }
 
@@ -37,6 +40,8 @@ public class Sample implements Tickable, Field {
      */
     @Override
     public void tick() {
+        explosions.clear();
+
         count++;
         if (count == 3) {
             int x = dice.next(size - 2);
@@ -50,19 +55,28 @@ public class Sample implements Tickable, Field {
             Hero hero = player.getHero();
             hero.tick();
         }
-        for (Stone stone : stones) {
-            stone.tick();
-        }
 
         for (Bullet bullet : bullets) {
             bullet.tick();
         }
-//
-//        for (Bullet bullet : bullets.toArray(new Bullet[0])) {
-//            if (walls.contains(bullet)) {
-//                bullets.remove(bullet);
-//            }
-//        }
+
+        removeStone();
+
+        for (Stone stone : stones) {
+            stone.tick();
+        }
+
+        removeStone();
+    }
+
+    private void removeStone() {
+        for (Bullet bullet : new ArrayList<>(bullets)) { // TODO to use iterator.remove
+            if (stones.contains(bullet)) {
+                bullets.remove(bullet);
+                stones.remove(bullet);
+                explosions.add(new Explosion(bullet));
+            }
+        }
     }
 
     public int size() {
@@ -96,6 +110,7 @@ public class Sample implements Tickable, Field {
                 result.addAll(stones);
                 result.addAll(walls);
                 result.addAll(bullets);
+                result.addAll(explosions);
                 return result;
             }
         };

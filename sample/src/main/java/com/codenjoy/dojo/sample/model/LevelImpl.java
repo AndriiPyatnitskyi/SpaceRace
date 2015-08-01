@@ -46,6 +46,17 @@ public class LevelImpl implements Level {
         return result;
     }
 
+    @Override
+    public List<Stone> getStones() {
+        List<Stone> result = new LinkedList<>();
+
+        for (Point pt : getPointsOf(Elements.STONE)) {
+            result.add(new Stone(pt));
+        }
+
+        return result;
+    }
+
 //    @Override
 //    public List<Gold> getGold() {
 //        List<Gold> result = new LinkedList<Gold>();

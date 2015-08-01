@@ -13,7 +13,8 @@ public enum Elements implements CharElements {
     WALL('☼'),       // а это стенка, через которую я хочу чтобы проходить нельзя было
     HERO('☺'),       // а это мой герой
     BULLET('*'),     // то снаряд
-    STONE('0');     // то астероид
+    STONE('0'),     // то астероид
+    EXPLOSION('x');     // взрыв
 
     final char ch;
 

@@ -15,4 +15,6 @@ public interface Level {
     List<Hero> getHero();
 
     List<Wall> getWalls();
+
+    List<Stone> getStones();
 }
