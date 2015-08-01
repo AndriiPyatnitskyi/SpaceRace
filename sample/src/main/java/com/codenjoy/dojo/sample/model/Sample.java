@@ -54,9 +54,9 @@ public class Sample implements Tickable, Field {
             stone.tick();
         }
 
-//        for (Bullet bullet : bullets) {
-//            bullet.tick();
-//        }
+        for (Bullet bullet : bullets) {
+            bullet.tick();
+        }
 //
 //        for (Bullet bullet : bullets.toArray(new Bullet[0])) {
 //            if (walls.contains(bullet)) {
@@ -95,6 +95,7 @@ public class Sample implements Tickable, Field {
                 result.addAll(getHeroes());
                 result.addAll(stones);
                 result.addAll(walls);
+                result.addAll(bullets);
                 return result;
             }
         };
@@ -109,8 +110,8 @@ public class Sample implements Tickable, Field {
     }
 
     @Override
-    public void addBullet(int x, int y, Direction direction) {
-        bullets.add(new Bullet(x, y, direction));
+    public void addBullet(int x, int y) {
+        bullets.add(new Bullet(x, y));
     }
 
     @Override

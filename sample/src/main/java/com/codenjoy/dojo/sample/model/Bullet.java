@@ -6,9 +6,6 @@ import com.codenjoy.dojo.services.PointImpl;
 import com.codenjoy.dojo.services.State;
 import com.codenjoy.dojo.services.Tickable;
 
-/**
- * Created by indigo on 01.08.2015.
- */
 public class Bullet extends PointImpl implements Tickable, State<Elements, Player> {
 
     private Direction direction;
@@ -17,9 +14,9 @@ public class Bullet extends PointImpl implements Tickable, State<Elements, Playe
         super(pt);
     }
 
-    public Bullet(int x, int y, Direction direction) {
+    public Bullet(int x, int y) {
         super(x, y);
-        this.direction = direction;
+        direction = Direction.UP;
     }
 
     @Override
@@ -31,7 +28,6 @@ public class Bullet extends PointImpl implements Tickable, State<Elements, Playe
     public void tick() {
         int newX = direction.changeX(x);
         int newY = direction.changeY(y);
-
         move(newX, newY);
     }
 }

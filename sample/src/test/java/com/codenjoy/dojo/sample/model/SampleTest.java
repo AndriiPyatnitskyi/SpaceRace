@@ -204,6 +204,32 @@ public class SampleTest {
                 "☼ ☺ ☼");
     }
 
+    @Test
+    public void shouldHeroShoot() {
+        // given
+
+        givenFl("☼   ☼" +
+                "☼   ☼" +
+                "☼   ☼" +
+                "☼ ☺ ☼" +
+                "☼   ☼");
+
+        // when
+        hero.act();
+        game.tick();
+        game.tick();
+
+        // then
+        assertE("☼   ☼" +
+                "☼ * ☼" +
+                "☼   ☼" +
+                "☼ ☺ ☼" +
+                "☼   ☼");
+
+
+    }
+
+
 
 //    // Я умею стралять в любую позицию
 //    @Test
