@@ -5,16 +5,12 @@ import com.codenjoy.dojo.services.PointImpl;
 import com.codenjoy.dojo.services.State;
 
 /**
- * Артефакт Стена на поле
+ * Created by indigo on 01.08.2015.
  */
 public class Wall extends PointImpl implements State<Elements, Player> {
 
-    public Wall(int x, int y) {
-        super(x, y);
-    }
-
-    public Wall(Point point) {
-        super(point);
+    public Wall(Point pt) {
+        super(pt);
     }
 
     @Override

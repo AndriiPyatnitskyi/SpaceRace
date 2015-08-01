@@ -40,10 +40,10 @@ public class Player {
      * @param event тип ивента
      */
     public void event(Events event) {
-        switch (event) {
-            case LOOSE: gameOver(); break;
-            case WIN: increaseScore(); break;
-        }
+//        switch (event) {
+//            case LOOSE: gameOver(); break;
+//            case WIN: increaseScore(); break;
+//        }
 
         if (listener != null) {
             listener.event(event);
@@ -68,9 +68,9 @@ public class Player {
      * @param field борда
      */
     public void newHero(Field field) {
-        Point pt = field.getFreeRandom();
-        hero = new Hero(pt);
-        hero.init(field);
+//        Point pt = field.getFreeRandom();
+//        hero = new Hero(pt);
+//        hero.init(field);
     }
 
 }

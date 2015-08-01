@@ -22,53 +22,14 @@ import java.util.List;
  */
 public class ApofigSolver implements Solver<Board> {
 
-    private DeikstraFindWay way;
-
     public ApofigSolver(Dice dice) {
-        this.way = new DeikstraFindWay();
-    }
-
-    public DeikstraFindWay.Possible possible(final Board board) {
-        return new DeikstraFindWay.Possible() {
-            @Override
-            public boolean possible(Point from, Direction where) {
-                int x = from.getX();
-                int y = from.getY();
-                if (board.isBarrierAt(x, y)) return false;
-
-                Point newPt = where.change(from);
-                int nx = newPt.getX();
-                int ny = newPt.getY();
-
-                if (board.isOutOfField(nx, ny)) return false;
-
-                if (board.isBarrierAt(nx, ny)) return false;
-                if (board.isBombAt(nx, ny)) return false;
-
-                return true;
-            }
-
-            @Override
-            public boolean possible(Point atWay) {
-                return true;
-            }
-        };
+        // TODO
     }
 
     @Override
     public String get(final Board board) {
-        if (board.isGameOver()) return "";
-        List<Direction> result = getDirections(board);
-        if (result.isEmpty()) return "";
-        return result.get(0).toString();
-    }
-
-    public List<Direction> getDirections(Board board) {
-        int size = board.size();
-        Point from = board.getMe();
-        List<Point> to = board.get(Elements.GOLD);
-        DeikstraFindWay.Possible map = possible(board);
-        return way.getShortestWay(size, from, to, map);
+        // TODO
+        return "UP,ACT(1,0,2),DOWN";
     }
 
     /**

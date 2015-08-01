@@ -35,11 +35,11 @@ public class Scores implements PlayerScores {
 
     @Override
     public void event(Object event) {
-        if (event.equals(Events.WIN)) {
-            score += winScore.getValue();
-        } else if (event.equals(Events.LOOSE)) {
-            score -= loosePenalty.getValue();
-        }
-        score = Math.max(0, score);
+//        if (event.equals(Events.WIN)) {
+//            score += winScore.getValue();
+//        } else if (event.equals(Events.LOOSE)) {
+//            score -= loosePenalty.getValue();
+//        }
+//        score = Math.max(0, score);
     }
 }

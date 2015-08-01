@@ -26,7 +26,7 @@ public class YourSolver implements Solver<Board> {
     @Override
     public String get(Board board) {
         this.board = board;
-        if (board.isGameOver()) return "";
+//        if (board.isGameOver()) return "";
 
         return Direction.UP.toString();
     }

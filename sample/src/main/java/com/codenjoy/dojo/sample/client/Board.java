@@ -22,20 +22,21 @@ public class Board extends AbstractBoard<Elements> {
         return Elements.valueOf(ch);
     }
 
-    public boolean isBarrierAt(int x, int y) {
-        return isAt(x, y, Elements.WALL);
-    }
-
-    public Point getMe() {
-        return get(Elements.DEAD_HERO,
-                Elements.HERO).get(0);
-    }
-
-    public boolean isGameOver() {
-        return !get(Elements.DEAD_HERO).isEmpty();
-    }
-
-    public boolean isBombAt(int x, int y) {
-        return isAt(x, y, Elements.BOMB);
-    }
+    // TODO
+//    public boolean isBarrierAt(int x, int y) {
+//        return isAt(x, y, Elements.WALL);
+//    }
+//
+//    public Point getMe() {
+//        return get(Elements.DEAD_HERO,
+//                Elements.HERO).get(0);
+//    }
+//
+//    public boolean isGameOver() {
+//        return !get(Elements.DEAD_HERO).isEmpty();
+//    }
+//
+//    public boolean isBombAt(int x, int y) {
+//        return isAt(x, y, Elements.BOMB);
+//    }
 }
