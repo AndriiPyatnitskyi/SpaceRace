@@ -131,7 +131,24 @@ public class SampleTest {
                 "☼   ☼");
     }
 
+    @Test
+    public void shouldNewStone() {
+        //Given
+        givenFl("☼   ☼" +
+                "☼   ☼" +
+                "☼ ☺ ☼" +
+                "☼   ☼" +
+                "☼   ☼");
 
+        dice(1);
+        game.tick();
+
+        assertE("☼ 0 ☼" +
+                "☼   ☼" +
+                "☼ ☺ ☼" +
+                "☼   ☼" +
+                "☼   ☼");
+    }
 //    // Я умею стралять в любую позицию
 //    @Test
 //    public void shouldFireUp() {

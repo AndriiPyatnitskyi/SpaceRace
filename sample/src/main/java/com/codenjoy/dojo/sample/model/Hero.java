@@ -15,7 +15,7 @@ public class Hero extends PointImpl implements Joystick, Tickable, State<Element
 
     public Hero(Point xy) {
         super(xy);
-        direction = Direction.UP;
+        direction = null;
         fire = false;
         alive = true;
     }
