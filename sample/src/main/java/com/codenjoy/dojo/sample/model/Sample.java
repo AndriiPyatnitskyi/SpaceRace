@@ -38,6 +38,10 @@ public class Sample implements Tickable, Field {
             Hero hero = player.getHero();
             hero.tick();
         }
+
+        for (Bullet bullet : bullets) {
+            bullet.tick();
+        }
     }
 
     public int size() {
@@ -84,8 +88,8 @@ public class Sample implements Tickable, Field {
     }
 
     @Override
-    public void addBullet(int x, int y) {
-        bullets.add(new Bullet(x, y));
+    public void addBullet(int x, int y, Direction direction) {
+        bullets.add(new Bullet(x, y, direction));
     }
 }
 
