@@ -65,7 +65,7 @@ public class SampleTest {
 
     // есть карта со мной
     @Test
-    public void shouldFieldICanMove() {
+    public void shouldFieldAtStart() {
         //Given
         givenFl("☼   ☼" +
                 "☼   ☼" +
