@@ -15,7 +15,7 @@ public class Hero extends PointImpl implements Joystick, Tickable, State<Element
 
     public Hero(Point xy) {
         super(xy);
-        direction = null;
+        direction = Direction.UP;
         fire = false;
         alive = true;
     }
@@ -67,10 +67,11 @@ public class Hero extends PointImpl implements Joystick, Tickable, State<Element
     public void tick() {
         if (!alive) return;
 
-        if (direction != null && fire) {
-            field.addBullet(x, y, direction);
+        if (direction != null) {
+            int newX = direction.changeX(x);
+            int newY = direction.changeY(y);
+            move(newX, newY);
         }
-        direction = null;
     }
 
     public boolean isAlive() {

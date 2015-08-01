@@ -26,7 +26,7 @@ public class Sample implements Tickable, Field {
         walls = level.getWalls();
         size = level.getSize();
         players = new LinkedList<Player>();
-        bullets = new LinkedList<Bullet>();
+        bullets = new LinkedList<>();
     }
 
     /**
@@ -39,15 +39,15 @@ public class Sample implements Tickable, Field {
             hero.tick();
         }
 
-        for (Bullet bullet : bullets) {
-            bullet.tick();
-        }
-
-        for (Bullet bullet : bullets.toArray(new Bullet[0])) {
-            if (walls.contains(bullet)) {
-                bullets.remove(bullet);
-            }
-        }
+//        for (Bullet bullet : bullets) {
+//            bullet.tick();
+//        }
+//
+//        for (Bullet bullet : bullets.toArray(new Bullet[0])) {
+//            if (walls.contains(bullet)) {
+//                bullets.remove(bullet);
+//            }
+//        }
     }
 
     public int size() {
@@ -78,7 +78,7 @@ public class Sample implements Tickable, Field {
             public Iterable<? extends Point> elements() {
                 List<Point> result = new LinkedList<Point>();
                 result.addAll(getHeroes());
-                result.addAll(bullets);
+//                result.addAll(bullets);
                 result.addAll(walls);
                 return result;
             }

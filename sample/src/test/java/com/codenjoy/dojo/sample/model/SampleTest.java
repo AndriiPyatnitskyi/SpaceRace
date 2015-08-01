@@ -80,6 +80,56 @@ public class SampleTest {
                 "☼   ☼");
     }
 
+    // я могу двигаться
+    @Test
+    public void shouldFieldIcanMove() {
+        //Given
+        givenFl("☼   ☼" +
+                "☼   ☼" +
+                "☼ ☺ ☼" +
+                "☼   ☼" +
+                "☼   ☼");
+        //when
+        hero.up();
+        game.tick();
+
+        //then
+        assertE("☼   ☼" +
+                "☼ ☺ ☼" +
+                "☼   ☼" +
+                "☼   ☼" +
+                "☼   ☼");
+        //when
+        hero.right();
+        game.tick();
+
+        //then
+        assertE("☼   ☼" +
+                "☼  ☺☼" +
+                "☼   ☼" +
+                "☼   ☼" +
+                "☼   ☼");
+        //when
+        hero.down();
+        game.tick();
+
+        //then
+        assertE("☼   ☼" +
+                "☼   ☼" +
+                "☼  ☺☼" +
+                "☼   ☼" +
+                "☼   ☼");
+        //when
+        hero.left();
+        game.tick();
+
+        //then
+        assertE("☼   ☼" +
+                "☼   ☼" +
+                "☼ ☺ ☼" +
+                "☼   ☼" +
+                "☼   ☼");
+    }
 
 
 //    // Я умею стралять в любую позицию
