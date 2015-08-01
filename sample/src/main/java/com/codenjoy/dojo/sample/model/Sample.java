@@ -1,9 +1,7 @@
 package com.codenjoy.dojo.sample.model;
 
-import com.codenjoy.dojo.sample.services.Events;
 import com.codenjoy.dojo.services.*;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -21,6 +19,7 @@ public class Sample implements Tickable, Field {
     private List<Wall> walls;
     private List<Bullet> bullets;
     private List<Stone> stones;
+    private boolean isNewStone = true;
 
     public Sample(Level level, Dice dice) {
         this.dice = dice;
@@ -29,6 +28,7 @@ public class Sample implements Tickable, Field {
         players = new LinkedList<Player>();
         stones = new LinkedList<>();
         bullets = new LinkedList<>();
+
     }
 
     /**
@@ -40,8 +40,12 @@ public class Sample implements Tickable, Field {
             Hero hero = player.getHero();
             hero.tick();
         }
+        for (Stone stone : stones) {
+            stone.getStone().tick();
+//            stone.tick();
+        }
 
-        setStone(dice.next(size - 2) + 1);
+
 
 //        for (Bullet bullet : bullets) {
 //            bullet.tick();
@@ -104,7 +108,10 @@ public class Sample implements Tickable, Field {
 
     @Override
     public void setStone(int x) {
-        stones.add(new Stone(x, size - 1));
+        if (isNewStone){
+            stones.add(new Stone(x, size - 1));
+            isNewStone = false;
+        }
     }
 }
 

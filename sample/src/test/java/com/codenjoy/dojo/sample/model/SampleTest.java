@@ -140,15 +140,40 @@ public class SampleTest {
                 "☼   ☼" +
                 "☼   ☼");
 
-        dice(1);
+        game.setStone(2);
         game.tick();
 
+        //then
         assertE("☼ 0 ☼" +
                 "☼   ☼" +
                 "☼ ☺ ☼" +
                 "☼   ☼" +
                 "☼   ☼");
     }
+
+    @Test
+    public void shouldStoneMove() {
+        //Given
+
+        givenFl("☼   ☼" +
+                "☼   ☼" +
+                "☼   ☼" +
+                "☼   ☼" +
+                "☼ ☺ ☼");
+        //when
+        game.setStone(1);
+        game.tick();
+        game.tick();
+        game.tick();
+
+        assertE("☼   ☼" +
+                "☼   ☼" +
+                "☼0  ☼" +
+                "☼   ☼" +
+                "☼ ☺ ☼");
+    }
+
+
 //    // Я умею стралять в любую позицию
 //    @Test
 //    public void shouldFireUp() {
