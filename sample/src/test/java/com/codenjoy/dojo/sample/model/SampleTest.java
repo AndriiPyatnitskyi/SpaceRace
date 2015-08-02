@@ -519,6 +519,13 @@ public class SampleTest {
                 "☼ ☺ ☼" +
                 "☼   ☼");
 
+        game.tick();
+
+        assertE("☼   ☼" +
+                "☼   ☼" +
+                "☼   ☼" +
+                "☼ ☺ ☼" +
+                "☼   ☼");
     }
 
 }
