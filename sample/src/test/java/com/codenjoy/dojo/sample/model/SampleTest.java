@@ -32,7 +32,7 @@ public class SampleTest {
     @Before
     public void setup() {
         dice = mock(Dice.class);
-        dice(-1);
+        dice(-1, -1);
     }
 
     private void dice(int...ints) {
@@ -59,9 +59,6 @@ public class SampleTest {
         assertEquals(TestUtils.injectN(expected),
                 printer.getPrinter(game.reader(), player).print());
     }
-
-
-
 
     // есть карта со мной
     @Test
@@ -186,11 +183,12 @@ public class SampleTest {
                 "☼ ☺ ☼");
 
         // when
-        dice(0);
+        dice(0, -1);
         game.tick();
         game.tick();
         game.tick();
 
+        dice(0, -1);
         game.tick();
         game.tick();
         game.tick();
@@ -424,6 +422,28 @@ public class SampleTest {
 
         // then
         assertE("☼ ♣ ☼" +
+                "☼   ☼" +
+                "☼ ☺ ☼" +
+                "☼   ☼" +
+                "☼   ☼");
+    }
+
+    @Test
+    public void shouldNewBombAndNewStoneAtNewPlace() {
+        // given
+        givenFl("☼   ☼" +
+                "☼   ☼" +
+                "☼ ☺ ☼" +
+                "☼   ☼" +
+                "☼   ☼");
+
+        dice(1, 1, 1, 1, 1, 1, 2);
+        game.tick();
+        game.tick();
+        game.tick();
+
+        // then
+        assertE("☼ 0♣☼" +
                 "☼   ☼" +
                 "☼ ☺ ☼" +
                 "☼   ☼" +

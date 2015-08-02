@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import static com.codenjoy.dojo.services.PointImpl.pt;
+
 /**
  * О! Это самое сердце игры - борда, на которой все происходит.
  * Если какой-то из жителей борды вдруг захочет узнать что-то у нее, то лучше ему дать интефейс {@see Field}
@@ -49,6 +51,7 @@ public class Sample implements Tickable, Field {
 
         createStone();
         createBomb();
+
         tickHeroes();
         tickBombs();
         tickBullets();
@@ -63,10 +66,18 @@ public class Sample implements Tickable, Field {
     private void createBomb() {
         countBomb++;
         if (countBomb == NEW_APPEAR_PERIOD) {
-            int x = dice.next(size - 2);
-            if (x != -1) {
+            int count = 0;
+            while (true && count++ < 10000) {
+                int x = dice.next(size - 2);
+                if (x == -1) break;
+                if (stones.contains(pt(x + 1, size))) continue;
+
                 addBomb(x + 1);
                 countBomb = 0;
+                break;
+            }
+            if (count == 10000) {
+                throw new RuntimeException("Извините не нашли пустого места");
             }
         }
     }
