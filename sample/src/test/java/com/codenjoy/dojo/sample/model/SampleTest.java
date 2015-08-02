@@ -225,7 +225,7 @@ public class SampleTest {
     }
 
     @Test
-    public void shouldStoneDestroydByBullet() {
+    public void shouldStoneDestroyedByBullet() {
         // given
 
         givenFl("☼   ☼" +
@@ -272,7 +272,7 @@ public class SampleTest {
     }
 
     @Test
-    public void shouldStoneDestroydByBullet2() {
+    public void shouldStoneDestroyedByBullet2() {
         // given
 
         givenFl("☼   ☼" +
@@ -363,7 +363,7 @@ public class SampleTest {
     }
 
     @Test
-    public void shouldBulletOutbond() {
+    public void shouldBulletOutbord() {
         // given
 
         givenFl("☼   ☼" +
@@ -448,6 +448,67 @@ public class SampleTest {
                 "☼ ☺ ☼" +
                 "☼   ☼" +
                 "☼   ☼");
+    }
+
+
+    @Test
+    public void shouldBombDestroyedByBullet() {
+        // given
+
+        givenFl("☼   ☼" +
+                "☼   ☼" +
+                "☼   ☼" +
+                "☼   ☼" +
+                "☼ ☺ ☼");
+
+
+        dice(-1, 1);
+        hero.act();
+        game.tick();
+        game.tick();
+        game.tick();
+
+
+
+        assertE("☼ ♣ ☼" +
+                "☼ * ☼" +
+                "☼   ☼" +
+                "☼   ☼" +
+                "☼ ☺ ☼");
+
+        game.tick();
+
+        assertE("☼ x ☼" +
+                "☼   ☼" +
+                "☼   ☼" +
+                "☼   ☼" +
+                "☼ ☺ ☼");
+//
+//        game.tick();
+//
+//        assertE("☼   ☼" +
+//                "☼   ☼" +
+//                "☼ * ☼" +
+//                "☼   ☼" +
+//                "☼ ☺ ☼");
+//
+//        game.tick();
+//
+//        assertE("☼ 0 ☼" +
+//                "☼ * ☼" +
+//                "☼   ☼" +
+//                "☼   ☼" +
+//                "☼ ☺ ☼");
+//
+//        game.tick();
+//
+//        // then
+//        assertE("☼ x ☼" +
+//                "☼   ☼" +
+//                "☼   ☼" +
+//                "☼   ☼" +
+//                "☼ ☺ ☼");
+
     }
 
 }

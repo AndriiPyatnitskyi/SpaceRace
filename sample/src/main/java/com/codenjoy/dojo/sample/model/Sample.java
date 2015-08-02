@@ -48,19 +48,17 @@ public class Sample implements Tickable, Field {
     @Override
     public void tick() {
         explosions.clear();
-
         createStone();
         createBomb();
-
         tickHeroes();
-        tickBombs();
         tickBullets();
+        removeBombDestroyedByBullet();
+        tickBombs();
         removeStoneDestroyedByBullet();
         tickStones();
         removeStoneDestroyedByBullet();
         removeStoneOutOfBoard();
         removeBulleteOutOfBoard();
-
     }
 
     private void createBomb() {
@@ -139,6 +137,16 @@ public class Sample implements Tickable, Field {
             if (stones.contains(bullet)) {
                 bullets.remove(bullet);
                 stones.remove(bullet);
+                explosions.add(new Explosion(bullet));
+            }
+        }
+    }
+
+    private void removeBombDestroyedByBullet() {
+        for (Bullet bullet : new ArrayList<>(bullets)) { // TODO to use iterator.remove
+            if (bombs.contains(bullet)) {
+                bullets.remove(bullet);
+                bombs.remove(bullet);
                 explosions.add(new Explosion(bullet));
             }
         }
