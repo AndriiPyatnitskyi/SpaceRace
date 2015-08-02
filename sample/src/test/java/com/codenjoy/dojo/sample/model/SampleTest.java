@@ -527,7 +527,29 @@ public class SampleTest {
                 "☼ ☺ ☼" +
                 "☼   ☼");
     }
+    @Test
+    public void shouldNewBombAndNewStoneAtNewPlace2() {
+        // given
+        givenFl("☼    ☼" +
+                "☼    ☼" +
+                "☼ ☺  ☼" +
+                "☼    ☼" +
+                "☼    ☼" +
+                "☼    ☼");
 
+        dice(1, 3);
+        game.tick();
+        game.tick();
+        game.tick();
+
+        // then
+        assertE("☼ 0 ♣☼" +
+                "☼    ☼" +
+                "☼ ☺  ☼" +
+                "☼    ☼" +
+                "☼    ☼" +
+                "☼    ☼");
+    }
 }
 
 
