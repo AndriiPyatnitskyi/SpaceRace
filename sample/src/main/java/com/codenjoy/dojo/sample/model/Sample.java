@@ -43,6 +43,18 @@ public class Sample implements Tickable, Field {
     public void tick() {
         explosions.clear();
 
+        createStone();
+        tickHeroes();
+        tickBullets();
+        removeStoneDestroyedByBullet();
+        tickStones();
+        removeStoneDestroyedByBullet();
+        removeStoneOutOfBoard();
+        removeBulleteOutOfBoard();
+
+    }
+
+    private void createStone() {
         count++;
         if (count == NEW_STONE_APPEAR_PERIOD) {
             int x = dice.next(size - 2);
@@ -51,26 +63,25 @@ public class Sample implements Tickable, Field {
                 count = 0;
             }
         }
+    }
 
+    private void tickHeroes() {
         for (Player player : players) {
             Hero hero = player.getHero();
             hero.tick();
         }
+    }
 
+    private void tickBullets() {
         for (Bullet bullet : bullets) {
             bullet.tick();
         }
+    }
 
-        removeStoneDestroyedByBullet();
-
+    private void tickStones() {
         for (Stone stone : stones) {
             stone.tick();
         }
-
-        removeStoneDestroyedByBullet();
-        removeStoneOutOfBoard();
-        removeBulleteOutOfBoard();
-
     }
 
     private void removeStoneOutOfBoard() {
