@@ -390,6 +390,27 @@ public class SampleTest {
                 "☼   ☼" +
                 "☼   ☼");
     }
+
+    @Test
+    public void shouldNewBomb() {
+        // given
+        givenFl("☼   ☼" +
+                "☼   ☼" +
+                "☼ ☺ ☼" +
+                "☼   ☼" +
+                "☼   ☼");
+
+        game.addBomb(2);
+        game.tick();
+
+        // then
+        assertE("☼ ♣ ☼" +
+                "☼   ☼" +
+                "☼ ☺ ☼" +
+                "☼   ☼" +
+                "☼   ☼");
+    }
+
 }
 
 

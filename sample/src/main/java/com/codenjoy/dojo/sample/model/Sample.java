@@ -1,6 +1,7 @@
 package com.codenjoy.dojo.sample.model;
 
 import com.codenjoy.dojo.services.*;
+import javafx.scene.Scene;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -24,6 +25,8 @@ public class Sample implements Tickable, Field {
     private List<Stone> stones;
     private boolean isNewStone = true;
     private int count = 0;
+    private List<Bomb> bombs;
+    private boolean isNewBomb = true;
 
     public Sample(Level level, Dice dice) {
         this.dice = dice;
@@ -31,6 +34,7 @@ public class Sample implements Tickable, Field {
         size = level.getSize();
         players = new LinkedList<>();
         stones = new LinkedList<>();
+        bombs = new LinkedList<>();
         bullets = new LinkedList<>();
         explosions = new LinkedList<>();
 
@@ -45,6 +49,7 @@ public class Sample implements Tickable, Field {
 
         createStone();
         tickHeroes();
+        tickBombs();
         tickBullets();
         removeStoneDestroyedByBullet();
         tickStones();
@@ -52,6 +57,12 @@ public class Sample implements Tickable, Field {
         removeStoneOutOfBoard();
         removeBulleteOutOfBoard();
 
+    }
+
+    private void tickBombs() {
+        for (Bomb bomb : bombs) {
+            bomb.tick();
+        }
     }
 
     private void createStone() {
@@ -139,6 +150,7 @@ public class Sample implements Tickable, Field {
                 List<Point> result = new LinkedList<>();
                 result.addAll(getHeroes());
                 result.addAll(stones);
+                result.addAll(bombs);
                 result.addAll(walls);
                 result.addAll(bullets);
                 result.addAll(explosions);
@@ -164,6 +176,11 @@ public class Sample implements Tickable, Field {
     public void addStone(int x) {
         stones.add(new Stone(x, size));
         isNewStone = false;
+    }
+
+    public void addBomb(int x) {
+        bombs.add(new Bomb(x, size));
+        isNewBomb = false;
     }
 }
 

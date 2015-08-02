@@ -14,7 +14,8 @@ public enum Elements implements CharElements {
     HERO('☺'),       // а это мой герой
     BULLET('*'),     // то снаряд
     STONE('0'),     // то астероид
-    EXPLOSION('x');     // взрыв
+    EXPLOSION('x'),     // взрыв
+    BOMB('♣');       // бомба
 
     final char ch;
 
