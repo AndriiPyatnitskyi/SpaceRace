@@ -159,10 +159,9 @@ public class Sample implements Tickable, Field {
             Hero hero = player.getHero();
             if (bombs.contains(hero)) {
                 bombExplosion(hero);
+                hero.die();
              }
-
         }
-
     }
 
     private void bombExplosion(Point pt) {
