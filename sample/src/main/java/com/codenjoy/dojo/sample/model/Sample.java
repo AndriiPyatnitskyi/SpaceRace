@@ -52,11 +52,8 @@ public class Sample implements Tickable, Field {
         createBomb();
         tickHeroes();
         tickBullets();
-
         tickBombs();
-
         tickStones();
-
         removeStoneOutOfBoard();
         removeBulleteOutOfBoard();
     }
@@ -86,6 +83,7 @@ public class Sample implements Tickable, Field {
             bomb.tick();
         }
         removeBombDestroyedByBullet();
+        heroExploytedByBomb();
     }
 
     private void createStone() {
@@ -156,9 +154,20 @@ public class Sample implements Tickable, Field {
         }
     }
 
-    private void bombExplosion(Bullet bullet) {
-        for(int x = bullet.getX() - 1; x < bullet.getX() + 2; x++){
-            for(int y = bullet.getY() - 1; y < bullet.getY() + 2; y++){
+    private void heroExploytedByBomb() {
+        for (Player player : new ArrayList<>(players)) {
+            Hero hero = player.getHero();
+            if (bombs.contains(hero)) {
+                bombExplosion(hero);
+             }
+
+        }
+
+    }
+
+    private void bombExplosion(Point pt) {
+        for(int x = pt.getX() - 1; x < pt.getX() + 2; x++){
+            for(int y = pt.getY() - 1; y < pt.getY() + 2; y++){
                 if (y != size) {
                     explosions.add(new Explosion(x, y));
                 }
@@ -193,12 +202,12 @@ public class Sample implements Tickable, Field {
             @Override
             public Iterable<? extends Point> elements() {
                 List<Point> result = new LinkedList<>();
+                result.addAll(explosions);
                 result.addAll(getHeroes());
                 result.addAll(stones);
                 result.addAll(bombs);
-                result.addAll(walls);
                 result.addAll(bullets);
-                result.addAll(explosions);
+                result.addAll(walls);
                 return result;
             }
         };

@@ -581,8 +581,6 @@ public class SampleTest {
 
         game.tick();
 
-
-//        game.tick();
         // then
         assertE("☼    ☼" +
                 "☼ xxx☼" +
@@ -590,6 +588,56 @@ public class SampleTest {
                 "☼ xxx☼" +
                 "☼    ☼" +
                 "☼  ☺ ☼");
+
+    }
+
+    @Test
+    public void shouldBombDestroyMe() {
+        // given
+        givenFl("☼    ☼" +
+                "☼    ☼" +
+                "☼    ☼" +
+                "☼    ☼" +
+                "☼  ☺ ☼" +
+                "☼    ☼");
+
+        dice(0, 2);
+
+        game.tick();
+        game.tick();
+
+        game.tick();
+        game.tick();
+
+        // then
+        assertE("☼    ☼" +
+                "☼0 ♣ ☼" +
+                "☼    ☼" +
+                "☼    ☼" +
+                "☼  ☺ ☼" +
+                "☼    ☼");
+
+        game.tick();
+        game.tick();
+
+
+        // then
+        assertE("☼  0 ☼" +
+                "☼    ☼" +
+                "☼    ☼" +
+                "☼0 ♣ ☼" +
+                "☼  ☺ ☼" +
+                "☼    ☼");
+
+        game.tick();
+
+        // then
+        assertE("☼    ☼" +
+                "☼  0 ☼" +
+                "☼    ☼" +
+                "☼ xxx☼" +
+                "☼0xxx☼" +
+                "☼ xxx☼");
 
     }
 }
