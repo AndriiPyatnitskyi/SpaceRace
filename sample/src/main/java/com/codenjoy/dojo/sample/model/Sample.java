@@ -47,6 +47,11 @@ public class Sample implements Tickable, Field {
      */
     @Override
     public void tick() {
+//        for(Player player : players){
+//            if(player.getHero().isAlive()){
+//                newGame(new Player());
+//            }
+//        }
         explosions.clear();
         createStone();
         createBomb();
@@ -155,14 +160,38 @@ public class Sample implements Tickable, Field {
     }
 
     private void heroExploytedByBomb() {
-        for (Player player : new ArrayList<>(players)) {
-            Hero hero = player.getHero();
-            if (bombs.contains(hero)) {
-                bombExplosion(hero);
-                hero.die();
-             }
+        List<Hero> heroes  = new LinkedList<>();
+        for(Player player : players){
+            heroes.add(player.getHero());
+        }
+        isNearBomb(heroes);
+
+    }
+
+    private void isNearBomb(List<Hero> heroes) {
+        for (Bomb bomb : bombs) {
+            for (Hero hero :  new ArrayList<>(heroes)) {
+                for (int x = bomb.getX() - 1; x < bomb.getX() + 2; x++) {
+                    for (int y = bomb.getY() - 1; y < bomb.getY() + 2; y++) {
+                        Point p = new Bullet(x, y);
+                        if (p.equals(hero)) {
+                            bombExplosion(bomb);
+                            bombs.remove(bomb);
+                            hero.die();
+                            heroes.remove(hero);
+                        }
+                    }
+                }
+            }
+//            for (Bullet bullet : new ArrayList<>(bullets)){
+//                if (bullet.isOutOf(size)){
+//                    bullets.remove(bullet);
+//                }
+//            }
         }
     }
+
+
 
     private void bombExplosion(Point pt) {
         for(int x = pt.getX() - 1; x < pt.getX() + 2; x++){

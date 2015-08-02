@@ -79,9 +79,8 @@ public class Hero extends PointImpl implements Joystick, Tickable, State<Element
         }
 }
 
-    public boolean die(){
+    public void die(){
         alive = false;
-        return alive;
     }
     public boolean isAlive() {
         return alive;
