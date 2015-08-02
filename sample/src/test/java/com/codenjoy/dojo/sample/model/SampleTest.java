@@ -6,6 +6,7 @@ import com.codenjoy.dojo.services.Dice;
 import com.codenjoy.dojo.services.EventListener;
 import com.codenjoy.dojo.services.PrinterFactoryImpl;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.stubbing.OngoingStubbing;
 
@@ -478,8 +479,8 @@ public class SampleTest {
 
         game.tick();
 
-        assertE("☼ x ☼" +
-                "☼   ☼" +
+        assertE("☼xxx☼" +
+                "☼xxx☼" +
                 "☼   ☼" +
                 "☼   ☼" +
                 "☼ ☺ ☼");
@@ -513,8 +514,8 @@ public class SampleTest {
 
         game.tick();
 
-        assertE("☼ x ☼" +
-                "☼   ☼" +
+        assertE("☼xxx☼" +
+                "☼xxx☼" +
                 "☼   ☼" +
                 "☼ ☺ ☼" +
                 "☼   ☼");
@@ -549,6 +550,47 @@ public class SampleTest {
                 "☼    ☼" +
                 "☼    ☼" +
                 "☼    ☼");
+    }
+
+
+    @Test
+    public void shouldBombDestroyedByBulletNew() {
+        // given
+        givenFl("☼    ☼" +
+                "☼    ☼" +
+                "☼    ☼" +
+                "☼    ☼" +
+                "☼    ☼" +
+                "☼  ☺ ☼");
+
+        dice(0, 2);
+
+        game.tick();
+        game.tick();
+        hero.act();
+        game.tick();
+        game.tick();
+
+        // then
+        assertE("☼    ☼" +
+                "☼0 ♣ ☼" +
+                "☼    ☼" +
+                "☼  * ☼" +
+                "☼    ☼" +
+                "☼  ☺ ☼");
+
+        game.tick();
+
+
+//        game.tick();
+        // then
+        assertE("☼    ☼" +
+                "☼ xxx☼" +
+                "☼0xxx☼" +
+                "☼ xxx☼" +
+                "☼    ☼" +
+                "☼  ☺ ☼");
+
     }
 }
 

@@ -151,7 +151,17 @@ public class Sample implements Tickable, Field {
             if (bombs.contains(bullet)) {
                 bombs.remove(bullet);
                 bullets.remove(bullet);
-                explosions.add(new Explosion(bullet));
+                bombExplosion(bullet);
+            }
+        }
+    }
+
+    private void bombExplosion(Bullet bullet) {
+        for(int x = bullet.getX() - 1; x < bullet.getX() + 2; x++){
+            for(int y = bullet.getY() - 1; y < bullet.getY() + 2; y++){
+                if (y != size) {
+                    explosions.add(new Explosion(x, y));
+                }
             }
         }
     }
