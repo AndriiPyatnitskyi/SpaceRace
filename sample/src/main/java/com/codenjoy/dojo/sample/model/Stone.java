@@ -11,7 +11,7 @@ public class Stone extends PointImpl implements State<Elements, Player>, Tickabl
     }
 
     public Stone(Point pt) {
-       super(pt);
+        super(pt);
     }
 
     @Override
@@ -21,7 +21,6 @@ public class Stone extends PointImpl implements State<Elements, Player>, Tickabl
 
     @Override
     public void tick() {
-
         if (direction != null) {
 
             int newX = direction.changeX(x);

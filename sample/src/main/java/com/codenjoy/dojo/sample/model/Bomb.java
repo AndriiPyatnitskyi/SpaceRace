@@ -2,9 +2,6 @@ package com.codenjoy.dojo.sample.model;
 
 import com.codenjoy.dojo.services.*;
 
-/**
- * Created by Pyatnitskiy.a on 02.08.2015.
- */
 public class Bomb extends PointImpl implements State<Elements, Player>, Tickable {
     private Direction direction;
 
@@ -25,7 +22,6 @@ public class Bomb extends PointImpl implements State<Elements, Player>, Tickable
     @Override
     public void tick() {
         if (direction != null) {
-
             int newX = direction.changeX(x);
             int newY = direction.changeY(y);
             move(newX, newY);

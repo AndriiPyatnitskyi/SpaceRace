@@ -483,31 +483,41 @@ public class SampleTest {
                 "☼   ☼" +
                 "☼   ☼" +
                 "☼ ☺ ☼");
-//
-//        game.tick();
-//
-//        assertE("☼   ☼" +
-//                "☼   ☼" +
-//                "☼ * ☼" +
-//                "☼   ☼" +
-//                "☼ ☺ ☼");
-//
-//        game.tick();
-//
-//        assertE("☼ 0 ☼" +
-//                "☼ * ☼" +
-//                "☼   ☼" +
-//                "☼   ☼" +
-//                "☼ ☺ ☼");
-//
-//        game.tick();
-//
-//        // then
-//        assertE("☼ x ☼" +
-//                "☼   ☼" +
-//                "☼   ☼" +
-//                "☼   ☼" +
-//                "☼ ☺ ☼");
+
+    }
+
+    @Test
+    public void shouldBombDestroyedByBullet2() {
+        // given
+
+        givenFl("☼   ☼" +
+                "☼   ☼" +
+                "☼   ☼" +
+                "☼ ☺ ☼" +
+                "☼   ☼");
+
+
+        dice(-1, 1);
+        hero.act();
+        game.tick();
+        game.tick();
+
+
+
+
+        assertE("☼   ☼" +
+                "☼ * ☼" +
+                "☼   ☼" +
+                "☼ ☺ ☼" +
+                "☼   ☼");
+
+        game.tick();
+
+        assertE("☼ x ☼" +
+                "☼   ☼" +
+                "☼   ☼" +
+                "☼ ☺ ☼" +
+                "☼   ☼");
 
     }
 

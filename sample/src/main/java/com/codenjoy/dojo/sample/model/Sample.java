@@ -52,11 +52,11 @@ public class Sample implements Tickable, Field {
         createBomb();
         tickHeroes();
         tickBullets();
-        removeBombDestroyedByBullet();
+
         tickBombs();
-        removeStoneDestroyedByBullet();
+
         tickStones();
-        removeStoneDestroyedByBullet();
+
         removeStoneOutOfBoard();
         removeBulleteOutOfBoard();
     }
@@ -81,9 +81,11 @@ public class Sample implements Tickable, Field {
     }
 
     private void tickBombs() {
+        removeBombDestroyedByBullet();
         for (Bomb bomb : bombs) {
             bomb.tick();
         }
+        removeBombDestroyedByBullet();
     }
 
     private void createStone() {
@@ -111,9 +113,11 @@ public class Sample implements Tickable, Field {
     }
 
     private void tickStones() {
+        removeStoneDestroyedByBullet();
         for (Stone stone : stones) {
             stone.tick();
         }
+        removeStoneDestroyedByBullet();
     }
 
     private void removeStoneOutOfBoard() {
@@ -145,8 +149,8 @@ public class Sample implements Tickable, Field {
     private void removeBombDestroyedByBullet() {
         for (Bullet bullet : new ArrayList<>(bullets)) { // TODO to use iterator.remove
             if (bombs.contains(bullet)) {
-                bullets.remove(bullet);
                 bombs.remove(bullet);
+                bullets.remove(bullet);
                 explosions.add(new Explosion(bullet));
             }
         }
