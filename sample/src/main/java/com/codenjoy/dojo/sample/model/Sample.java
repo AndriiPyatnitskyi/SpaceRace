@@ -1,7 +1,6 @@
 package com.codenjoy.dojo.sample.model;
 
 import com.codenjoy.dojo.services.*;
-import javafx.scene.Scene;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -14,7 +13,7 @@ import java.util.List;
  */
 public class Sample implements Tickable, Field {
 
-    public static final int NEW_STONE_APPEAR_PERIOD = 3;
+    public static final int NEW_APPEAR_PERIOD = 3;
     private List<Player> players;
 
     private final int size;
@@ -24,7 +23,8 @@ public class Sample implements Tickable, Field {
     private List<Explosion> explosions;
     private List<Stone> stones;
     private boolean isNewStone = true;
-    private int count = 0;
+    private int countStone = 0;
+    private int countBomb = 0;
     private List<Bomb> bombs;
     private boolean isNewBomb = true;
 
@@ -48,6 +48,7 @@ public class Sample implements Tickable, Field {
         explosions.clear();
 
         createStone();
+        createBomb();
         tickHeroes();
         tickBombs();
         tickBullets();
@@ -59,6 +60,17 @@ public class Sample implements Tickable, Field {
 
     }
 
+    private void createBomb() {
+        countBomb++;
+        if (countBomb == NEW_APPEAR_PERIOD) {
+            int x = dice.next(size - 2);
+            if (x != -1) {
+                addBomb(x + 1);
+                countBomb = 0;
+            }
+        }
+    }
+
     private void tickBombs() {
         for (Bomb bomb : bombs) {
             bomb.tick();
@@ -66,12 +78,12 @@ public class Sample implements Tickable, Field {
     }
 
     private void createStone() {
-        count++;
-        if (count == NEW_STONE_APPEAR_PERIOD) {
+        countStone++;
+        if (countStone == NEW_APPEAR_PERIOD) {
             int x = dice.next(size - 2);
             if (x != -1) {
                 addStone(x + 1);
-                count = 0;
+                countStone = 0;
             }
         }
     }

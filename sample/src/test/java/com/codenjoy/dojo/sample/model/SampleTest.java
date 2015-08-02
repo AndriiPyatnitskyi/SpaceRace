@@ -236,7 +236,7 @@ public class SampleTest {
                 "☼   ☼" +
                 "☼ ☺ ☼");
 
-        dice(1);
+        dice(1, -1);
         hero.act();
         game.tick();
 
@@ -283,7 +283,7 @@ public class SampleTest {
                 "☼ ☺ ☼" +
                 "☼   ☼");
 
-        dice(1);
+        dice(1, -1);
         hero.act();
         game.tick();
 
@@ -323,7 +323,6 @@ public class SampleTest {
     @Test
     public void shouldStoneRemovedWhenOutsideBorder() {
         // given
-
         givenFl("☼   ☼" +
                 "☼   ☼" +
                 "☼   ☼" +
@@ -331,7 +330,7 @@ public class SampleTest {
                 "☼ ☺ ☼");
 
         // when
-        dice(2);
+        dice(2, -1, 2, -1);
         game.tick();
         game.tick();
         game.tick();
@@ -348,7 +347,6 @@ public class SampleTest {
         game.tick();
         game.tick();
 
-
         // then
         assertE("☼   ☼" +
                 "☼  0☼" +
@@ -364,7 +362,6 @@ public class SampleTest {
                 "☼  0☼" +
                 "☼   ☼" +
                 "☼ ☺ ☼");
-
     }
 
     @Test
@@ -401,6 +398,28 @@ public class SampleTest {
                 "☼   ☼");
 
         game.addBomb(2);
+        game.tick();
+
+        // then
+        assertE("☼ ♣ ☼" +
+                "☼   ☼" +
+                "☼ ☺ ☼" +
+                "☼   ☼" +
+                "☼   ☼");
+    }
+
+    @Test
+    public void shouldNewBombAtRandomPlace() {
+        // given
+        givenFl("☼   ☼" +
+                "☼   ☼" +
+                "☼ ☺ ☼" +
+                "☼   ☼" +
+                "☼   ☼");
+
+        dice(-1, 1);
+        game.tick();
+        game.tick();
         game.tick();
 
         // then
