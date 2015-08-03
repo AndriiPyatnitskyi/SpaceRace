@@ -1,20 +1,19 @@
 package com.codenjoy.dojo.sample.model;
 
-import com.codenjoy.dojo.services.PrinterFactory;
-import com.codenjoy.dojo.utils.TestUtils;
-import com.codenjoy.dojo.services.Dice;
-import com.codenjoy.dojo.services.EventListener;
-import com.codenjoy.dojo.services.PrinterFactoryImpl;
+import static junit.framework.Assert.assertEquals;
+import static org.mockito.Matchers.anyInt;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.stubbing.OngoingStubbing;
 
-import static junit.framework.Assert.assertEquals;
-import static junit.framework.Assert.assertFalse;
-import static junit.framework.Assert.assertTrue;
-import static org.mockito.Matchers.anyInt;
-import static org.mockito.Mockito.*;
+import com.codenjoy.dojo.services.Dice;
+import com.codenjoy.dojo.services.EventListener;
+import com.codenjoy.dojo.services.PrinterFactory;
+import com.codenjoy.dojo.services.PrinterFactoryImpl;
+import com.codenjoy.dojo.utils.TestUtils;
 
 /**
  * User: sanja
@@ -661,16 +660,6 @@ public class SampleTest {
         game.tick();
         game.tick();
 
-//        // then
-//        assertE("☼   0☼" +
-//                "☼    ☼" +
-//                "☼  xxx" +
-//                "☼0 xxx" +
-//                "☼  xxx" +
-//                "☼    ☼");
-//        game.tick();
-//        game.tick();
-
         // then
         assertE("☼   0☼" +
                 "☼    ☼" +
@@ -678,6 +667,7 @@ public class SampleTest {
                 "☼0 xxx" +
                 "☼  xxx" +
                 "☼    ☼");
+
     }
 }
 
