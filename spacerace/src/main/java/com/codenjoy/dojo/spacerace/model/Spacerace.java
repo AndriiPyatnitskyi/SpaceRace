@@ -11,9 +11,9 @@ import static com.codenjoy.dojo.services.PointImpl.pt;
 /**
  * О! Это самое сердце игры - борда, на которой все происходит.
  * Если какой-то из жителей борды вдруг захочет узнать что-то у нее, то лучше ему дать интефейс {@see Field}
- * Борда реализует интерфейс {@see Tickable} чтобы быть уведомленной о каждом тике игры. Обрати внимание на {Sample#tick()}
+ * Борда реализует интерфейс {@see Tickable} чтобы быть уведомленной о каждом тике игры. Обрати внимание на {Spacerace#tick()}
  */
-public class Sample implements Tickable, Field {
+public class Spacerace implements Tickable, Field {
 
     public static final int NEW_APPEAR_PERIOD = 3;
     private List<Player> players;
@@ -30,7 +30,7 @@ public class Sample implements Tickable, Field {
     private List<Bomb> bombs;
     private boolean isNewBomb = true;
 
-    public Sample(Level level, Dice dice) {
+    public Spacerace(Level level, Dice dice) {
         this.dice = dice;
         walls = level.getWalls();
         size = level.getSize();
@@ -67,7 +67,7 @@ public class Sample implements Tickable, Field {
         countBomb++;
         if (countBomb == NEW_APPEAR_PERIOD) {
             int count = 0;
-            while (true && count++ < 10000) {
+            while (count++ < 10000) {
                 int x = dice.next(size - 2);
                 if (x == -1) break;
                 if (stones.contains(pt(x + 1, size))) continue;
@@ -220,7 +220,7 @@ public class Sample implements Tickable, Field {
 
     public BoardReader reader() {
         return new BoardReader() {
-            private int size = Sample.this.size;
+            private int size = Spacerace.this.size;
 
             @Override
             public int size() {

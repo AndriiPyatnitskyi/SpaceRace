@@ -22,7 +22,7 @@ import com.codenjoy.dojo.utils.TestUtils;
  */
 public class SpaceraceTest {
 
-    private Sample game;
+    private Spacerace game;
     private Hero hero;
     private Dice dice;
     private EventListener listener;
@@ -46,7 +46,7 @@ public class SpaceraceTest {
         LevelImpl level = new LevelImpl(board);
         Hero hero = level.getHero().get(0);
 
-        game = new Sample(level, dice);
+        game = new Spacerace(level, dice);
         listener = mock(EventListener.class);
         player = new Player(listener);
         game.newGame(player);

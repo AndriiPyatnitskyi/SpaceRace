@@ -19,7 +19,7 @@ public class GameRunner implements GameType {
     public final static boolean SINGLE = true;
     private final Settings settings;
     private final Level level;
-    private Sample game;
+    private Spacerace game;
 
     public GameRunner() {
         settings = new SettingsImpl();
@@ -57,8 +57,8 @@ public class GameRunner implements GameType {
                 "☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼");
     }
 
-    private Sample newGame() {
-        return new Sample(level, new RandomDice());
+    private Spacerace newGame() {
+        return new Spacerace(level, new RandomDice());
     }
 
     @Override

@@ -4,15 +4,15 @@ import com.codenjoy.dojo.services.*;
 
 /**
  * А вот тут немного хак :) Дело в том, что фреймворк изначально не поддерживал игры типа "все на однмо поле", а потому
- * пришлось сделать этот декоратор. Борда (@see Sample) - одна на всех, а игры (@see Single) у каждого своя. Кода тут не много.
+ * пришлось сделать этот декоратор. Борда (@see Spacerace) - одна на всех, а игры (@see Single) у каждого своя. Кода тут не много.
  */
 public class Single implements Game {
 
     private Printer printer;
     private Player player;
-    private Sample game;
+    private Spacerace game;
 
-    public Single(Sample game, EventListener listener, PrinterFactory factory) {
+    public Single(Spacerace game, EventListener listener, PrinterFactory factory) {
         this.game = game;
         this.player = new Player(listener);
         this.printer = factory.getPrinter(game.reader(), player);
