@@ -632,7 +632,7 @@ public class SpaceraceTest {
     }
 
     @Test
-    public void shouldBombDestroyMeNearRight() {
+         public void shouldBombDestroyMeNearRight() {
         // given
         givenFl("☼    ☼" +
                 "☼    ☼" +
@@ -669,6 +669,7 @@ public class SpaceraceTest {
                 "☼    ☼");
 
     }
+    // comment
 }
 
 
