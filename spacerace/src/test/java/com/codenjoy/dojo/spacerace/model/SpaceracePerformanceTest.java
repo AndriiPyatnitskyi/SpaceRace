@@ -15,7 +15,7 @@ import static org.mockito.Mockito.mock;
 /**
  * Created by Sanja on 15.02.14.
  */
-public class SpaceraceePerofmanceTest {
+public class SpaceracePerformanceTest {
 
     @Test // TODO закончить как будет настроение :)
     public void test() {
